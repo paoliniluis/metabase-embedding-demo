@@ -10,7 +10,7 @@ services:
       MB_ENABLE_EMBEDDING: true
       MB_EMBEDDING_SECRET_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
       MB_SITE_URL: http://localhost:3000/
-      MB_PREMIUM_EMBEDDING_TOKEN: <insert_here_your_premium_token>
+      MB_PREMIUM_EMBEDDING_TOKEN: <your_token>
       MB_LOAD_ANALYTICS_CONTENT: false
       MB_LOAD_SAMPLE_CONTENT: false
       MB_JWT_ENABLED: true
@@ -116,6 +116,9 @@ services:
       - $PWD/frontend/src:/app/src
       - $PWD/frontend/public:/app/public
     hostname: frontend
+    environment:
+      VITE_METABASE_INSTANCE_URL: http://localhost:3000
+      VITE_AUTH_PROVIDER_URI: http://localhost:9090/api/sdk
     depends_on:
       backend:
         condition: service_healthy
@@ -125,10 +128,10 @@ services:
       resources:
         limits:
           cpus: '1'
-          memory: 256MB
+          memory: 1024MB
         reservations:
           cpus: '1'
-          memory: 256MB
+          memory: 1024MB
 
 networks: 
   metanet:

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, BarChart2, PieChart, HelpCircle } from 'lucide-react';
+import { Home, BarChart, BarChart2, PieChart, HelpCircle } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Top Navigation Bar */}
       <nav className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
@@ -31,19 +31,25 @@ const Layout = ({ children }) => {
               <span>Home</span>
             </NavLink>
             
-            {/* Dashboard 1 */}
+            {/* Interactive embedding */}
             <NavLink path="/interactive">
               <BarChart2 size={20} />
               <span>Interactive</span>
             </NavLink>
             
-            {/* Dashboard 2 */}
+            {/* Static embedding */}
             <NavLink path="/static">
               <PieChart size={20} />
               <span>Static</span>
             </NavLink>
+
+            {/* SDK embedding */}
+            <NavLink path="/sdk">
+              <BarChart size={20} />
+              <span>SDK</span>
+            </NavLink>
             
-            {/* Questions */}
+            {/* Interactive embedding + New question */}
             <NavLink path="/questions">
               <HelpCircle size={20} />
               <span>New question</span>
@@ -54,7 +60,7 @@ const Layout = ({ children }) => {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 py-6">
-        <div className="bg-white rounded-lg shadow">
+        <div className="bg-white rounded-lg">
           {children}
         </div>
       </main>

@@ -12,6 +12,7 @@ const user = {
     email: "someone@somedomain.com",
     first_name: "Someone",
     last_name: "Somebody",
+    exp: Math.floor(Date.now() / 1000) + 60 * 60, // this is the expiration time for the token, in this case, it's 1 hour
     groups: ["viewer"], // groups property is optional, we're sending this to show how you can configure group mappings in Metabase
 }
 
@@ -22,6 +23,7 @@ const signUserToken = user =>
         email: user.email,
         first_name: user.first_name,
         last_name: user.last_name,
+        exp: user.exp,
       },
       JWT_SIGNING_KEY_INTERACTIVE_EMBEDDING
     );
@@ -37,7 +39,7 @@ const signStaticEmbeddedDashboard = dashboard_id => {
 
 const server = Bun.serve({
     port: 9090,
-    fetch(req) {
+    async fetch(req) {
         const reqUrl = new URL(req.url);
         const path = reqUrl.pathname;
         const params = reqUrl.searchParams;
@@ -61,6 +63,17 @@ const server = Bun.serve({
                         },
                     }),
                     301);
+            case '/api/sdk': // this is the endpoint that the frontend will call to get the session token with the SDK, it could have been done in the previous endpoint, but it's just here separated for clarity
+                let token = await fetch(`http://metabase:3000/auth/sso?token=true&jwt=${signUserToken(user)}`); // check that we're using the Metabase container URL here instead of localhost, since the API call here is server to server to get the session token rather than a pure FE call like it's on the interactive embedding SSO endpoint
+                token = await token.json();
+                return Response.json(token, 
+                    { 
+                        headers: {
+                            'Access-Control-Allow-Origin': 'http://localhost:8080',
+                            'Access-Control-Allow-Credentials': 'true',
+                            'Access-Control-Allow-Methods': 'GET'
+                        } 
+                    });
             default:
                 return new Response(null, { status: 404 });
         }

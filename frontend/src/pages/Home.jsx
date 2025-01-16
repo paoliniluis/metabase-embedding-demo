@@ -27,6 +27,12 @@ const Home = () => {
           link="/static"
         />
         <FeatureCard 
+          icon={<HelpCircle className="w-8 h-8 text-red-500" />}
+          title="SDK"
+          description="This is the same dashboard, but embedded using the SDK."
+          link="/sdk"
+        />
+        <FeatureCard 
           icon={<HelpCircle className="w-8 h-8 text-purple-500" />}
           title="New question"
           description="This is an example of Metabase being embedded interactively but controlling where the user can go. In this case, the GUI question builder."
