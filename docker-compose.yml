@@ -1,6 +1,6 @@
 services:
   metabase:
-    image: metabase/metabase-enterprise:v1.52.5
+    image: metabase/metabase-enterprise:v1.52.8
     container_name: metabase
     hostname: metabase
     ports:
@@ -10,7 +10,7 @@ services:
       MB_ENABLE_EMBEDDING: true
       MB_EMBEDDING_SECRET_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
       MB_SITE_URL: http://localhost:3000/
-      MB_PREMIUM_EMBEDDING_TOKEN: <your_token>
+      MB_PREMIUM_EMBEDDING_TOKEN: <your token>
       MB_LOAD_ANALYTICS_CONTENT: false
       MB_LOAD_SAMPLE_CONTENT: false
       MB_JWT_ENABLED: true
@@ -19,11 +19,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: 3000M
+          cpus: '1'
+          memory: 2048M
         reservations:
-          cpus: '2'
-          memory: 1500M
+          cpus: '1'
+          memory: 2048M
     networks: 
       - metanet
     healthcheck:

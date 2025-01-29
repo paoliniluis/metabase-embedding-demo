@@ -23,8 +23,8 @@ const Layout = ({ children }) => {
     <div className="min-h-screen">
       {/* Top Navigation Bar */}
       <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center h-16 gap-4">
+        <div className="max-w-8xl mx-auto px-4">
+          <div className="flex items-center h-25 gap-8">
             {/* Logo/Home */}
             <NavLink path="/">
               <Home size={20} />
@@ -32,27 +32,53 @@ const Layout = ({ children }) => {
             </NavLink>
             
             {/* Interactive embedding */}
-            <NavLink path="/interactive">
+            <NavLink path="/interactive_embedding">
               <BarChart2 size={20} />
               <span>Interactive</span>
             </NavLink>
             
             {/* Static embedding */}
-            <NavLink path="/static">
+            <NavLink path="/static_dashboard">
               <PieChart size={20} />
-              <span>Static</span>
+              <span>Static Dashboard</span>
+            </NavLink>
+
+            <NavLink path="/static_question">
+              <PieChart size={20} />
+              <span>Static question</span>
             </NavLink>
 
             {/* SDK embedding */}
-            <NavLink path="/sdk">
+            <NavLink path="/sdk_interactive_dashboard">
               <BarChart size={20} />
-              <span>SDK</span>
+              <span>SDK Interactive Dashboard</span>
+            </NavLink>
+
+            <NavLink path="/sdk_static_dashboard">
+              <BarChart size={20} />
+              <span>SDK Static Dashboard</span>
             </NavLink>
             
+            <NavLink path="/sdk_interactive_question">
+              <BarChart size={20} />
+              <span>SDK interactive question</span>
+            </NavLink>
+            
+            <NavLink path="/sdk_static_question">
+              <BarChart size={20} />
+              <span>SDK static question</span>
+            </NavLink>
+            
+            <NavLink path="/sdk_query_builder">
+              <BarChart size={20} />
+              <span>SDK query builder</span>
+            </NavLink>
+
+
             {/* Interactive embedding + New question */}
-            <NavLink path="/questions">
+            <NavLink path="/interactive_question_builder">
               <HelpCircle size={20} />
-              <span>New question</span>
+              <span>Interactive question builder</span>
             </NavLink>
           </div>
         </div>

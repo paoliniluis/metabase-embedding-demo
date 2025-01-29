@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Static = () => {
+const StaticCard = () => {
   return (
     <div>
       <p>
@@ -8,7 +8,7 @@ const Static = () => {
         <a href="https://www.metabase.com/docs/latest/embedding/static-embedding#resizing-dashboards-to-fit-their-content" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>documentation</a>.
       </p>
       <iframe 
-        src="http://localhost:9090/api/static"
+        src="http://localhost:9090/api/static_question"
         className="w-full h-[calc(100vh-12rem)] rounded-lg"
         title="Metrics Dashboard"
       />
@@ -16,4 +16,4 @@ const Static = () => {
   );
 };
 
-export default Static;
+export default StaticCard;

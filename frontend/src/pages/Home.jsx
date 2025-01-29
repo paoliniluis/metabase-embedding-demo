@@ -17,26 +17,56 @@ const Home = () => {
         <FeatureCard 
           icon={<BarChart2 className="w-8 h-8 text-blue-500" />}
           title="Interactive embedding"
-          description="This is an example of Metabase being embedded with interactive features."
-          link="/interactive"
+          description="This is an example of the entire Metabase App being embedded with interactive features."
+          link="/interactive_embedding"
         />
         <FeatureCard 
           icon={<PieChart className="w-8 h-8 text-green-500" />}
           title="Static embedding"
-          description="This is an example of Metabase being embedded without any interactivity (only filters)."
-          link="/static"
+          description="This is an example of a Metabase dashboard being embedded without any interactivity (only filters)."
+          link="/static_dashboard"
+        />
+        <FeatureCard 
+          icon={<PieChart className="w-8 h-8 text-green-500" />}
+          title="Static embedding"
+          description="This is an example of a Metabase Question being embedded without any interactivity (only filters)."
+          link="/static_question"
         />
         <FeatureCard 
           icon={<HelpCircle className="w-8 h-8 text-red-500" />}
           title="SDK"
           description="This is the same dashboard, but embedded using the SDK."
-          link="/sdk"
+          link="/sdk_static_dashboard"
+        />
+        <FeatureCard 
+          icon={<HelpCircle className="w-8 h-8 text-red-500" />}
+          title="SDK"
+          description="This is the same dashboard, but embedded using the SDK."
+          link="/sdk_interactive_dashboard"
+        />
+        <FeatureCard 
+          icon={<HelpCircle className="w-8 h-8 text-red-500" />}
+          title="SDK"
+          description="This is the same question, but embedded using the SDK."
+          link="/sdk_static_question"
+        />
+        <FeatureCard 
+          icon={<HelpCircle className="w-8 h-8 text-red-500" />}
+          title="SDK"
+          description="This is the same question, but embedded using the SDK."
+          link="/sdk_interactive_question"
         />
         <FeatureCard 
           icon={<HelpCircle className="w-8 h-8 text-purple-500" />}
-          title="New question"
+          title="Interactive question builder"
           description="This is an example of Metabase being embedded interactively but controlling where the user can go. In this case, the GUI question builder."
-          link="/questions"
+          link="/interactive_question"
+        />
+        <FeatureCard 
+          icon={<HelpCircle className="w-8 h-8 text-purple-500" />}
+          title="SDK query builder"
+          description="This is an example of Metabase being embedded interactively but controlling where the user can go. In this case, the GUI question builder."
+          link="/sdk_query_builder"
         />
       </div>
     </div>

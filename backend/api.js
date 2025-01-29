@@ -28,14 +28,17 @@ const signUserToken = user =>
       JWT_SIGNING_KEY_INTERACTIVE_EMBEDDING
     );
 
-// this is where we sign the static embedded dashboard with the static embedding signing key. We're using the dashboard id as the resource, and an empty object as the params, but the params object can be used to pass fixed filter values to the dashboard
-const signStaticEmbeddedDashboard = dashboard_id => {
-    return jwt.sign({
-        resource: { dashboard: dashboard_id },
-        params: {},
-    }, 
-    JWT_SIGNING_KEY_STATIC_EMBEDDING);
-}
+// this is where we sign the static embedded dashboard or question with the static embedding signing key. We're using the id as the resource, and an empty object as the params, but the params object can be used to pass fixed filter values to the dashboard
+const signStaticEmbeddedResource = (resource, resource_id) => {
+    const resourceObj = { [resource]: resource_id };
+    return jwt.sign(
+        {
+            resource: resourceObj,
+            params: {},
+        },
+        JWT_SIGNING_KEY_STATIC_EMBEDDING
+    );
+};
 
 const server = Bun.serve({
     port: 9090,
@@ -46,10 +49,18 @@ const server = Bun.serve({
         switch (path) {
             case '/api/health': // health check endpoint to make the frontend aware that the backend is running. It's not checking for anything at all, just returning a 200 status code
                 return new Response(null, { status: 200 });
-            case '/api/static': // this is the endpoint that the frontend will call to get the static embedded dashboard URL
+            case '/api/static_dashboard': // this is the endpoint that the frontend will call to get the static embedded dashboard URL
                 return Response.redirect(
                     url.format({
-                        pathname: `${METABASE_URL}/embed/dashboard/${signStaticEmbeddedDashboard(1)}`, // dashboard id is always gonna be 1 for this example, as we're just generating 1 dashboard only
+                        pathname: `${METABASE_URL}/embed/dashboard/${signStaticEmbeddedResource('dashboard', 1)}`, // dashboard id is always gonna be 1 for this example, as we're just generating 1 dashboard only
+                        params: {}
+                    })
+                    , 301);
+            case '/api/static_question': // this is the endpoint that the frontend will call to get the static embedded dashboard URL
+                return Response.redirect(
+                    url.format({
+                        pathname: `${METABASE_URL}/embed/question/${signStaticEmbeddedResource('question', 4)}`, // dashboard id is always gonna be 1 for this example, as we're just generating 1 dashboard only
+                        params: {}
                     })
                     , 301);
             case '/api/auth': // this is the endpoint that the frontend will call to get the SSO URL

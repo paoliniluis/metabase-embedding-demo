@@ -45,15 +45,15 @@ const theme = defineMetabaseTheme({
   });
   
 
-const SDK = () => {
+const SDKInteractiveDashboard = () => {
   return (
     <div className="App" style={{ width: "1200px", height: "800px" }}>
         <div><p>This is the same dashboard being rendered natively on the application without any iframes. You can appreciate the difference in the speed of the rendering along the changes in the formatting that you can make. You can see more information about our SDK in this <a href='https://www.metabase.com/docs/latest/embedding/sdk/introduction' style={{ color: 'blue', textDecoration: 'underline' }}>link</a></p></div>
       <MetabaseProvider authConfig={config} theme={theme}>
-        <InteractiveDashboard dashboardId={1} theme={theme} />
+        <InteractiveDashboard dashboardId={1} />
       </MetabaseProvider>
     </div>
   );
 };
 
-export default SDK;
+export default SDKInteractiveDashboard;
